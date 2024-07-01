@@ -1302,20 +1302,20 @@ Enter Prompt:<br>
         elif self.path=="/api" or self.path=="/docs" or self.path.startswith(('/api/?json=','/api?json=','/docs/?json=','/docs?json=')):
             content_type = 'text/html'
             if embedded_kcpp_docs is None:
-                response_body = (f"KoboldCpp API is running!\n\nAPI usage reference can be found at the wiki: https://github.com/LostRuins/koboldcpp/wiki").encode()
+                response_body = (f"NoAVX2 CUDA KoboldCpp API is running!\n\nAPI usage reference can be found at the wiki: https://github.com/LostRuins/koboldcpp/wiki").encode()
             else:
                 response_body = embedded_kcpp_docs
 
         elif self.path.startswith(("/sdui")):
             content_type = 'text/html'
             if embedded_kcpp_sdui is None:
-                response_body = (f"KoboldCpp API is running, but KCPP SDUI is not loaded").encode()
+                response_body = (f"NoAVX2 CUDA KoboldCpp API is running, but KCPP SDUI is not loaded").encode()
             else:
                 response_body = embedded_kcpp_sdui
 
         elif self.path=="/v1":
             content_type = 'text/html'
-            response_body = (f"KoboldCpp OpenAI compatible endpoint is running!\n\nFor usage reference, see https://platform.openai.com/docs/api-reference").encode()
+            response_body = (f"NoAVX2 CUDA KoboldCpp OpenAI compatible endpoint is running!\n\nFor usage reference, see https://platform.openai.com/docs/api-reference").encode()
 
         elif self.path=="/api/extra/preloadstory":
             if preloaded_story is None:
@@ -2259,7 +2259,7 @@ def show_new_gui():
     quick_boxes_desc = {"Launch Browser": "Launches your default browser after model loading is complete",
     "Disable MMAP":"Avoids using mmap to load models if enabled",
     "Use ContextShift":"Uses Context Shifting to reduce reprocessing.\nRecommended. Check the wiki for more info.",
-    "Remote Tunnel":"Creates a trycloudflare tunnel.\nAllows you to access koboldcpp from other devices over an internet URL.",
+    "Remote Tunnel":"Creates a trycloudflare tunnel.\nAllows you to access NoAVX2 CUDA koboldcpp from other devices over an internet URL.",
     "Use FlashAttention":"Enable flash attention for GGUF models.",
     "Quiet Mode":"Prevents all generation related terminal output from being displayed."}
     for idx, name, in enumerate(quick_boxes):
@@ -2301,11 +2301,11 @@ def show_new_gui():
     # hardware checkboxes
     hardware_boxes = {"Launch Browser": launchbrowser, "High Priority" : highpriority, "Disable MMAP":disablemmap, "Use mlock":usemlock, "Debug Mode":debugmode, "Keep Foreground":keepforeground}
     hardware_boxes_desc = {"Launch Browser": "Launches your default browser after model loading is complete",
-    "High Priority": "Increases the koboldcpp process priority.\nMay cause lag or slowdown instead. Not recommended.",
+    "High Priority": "Increases the NoAVX2 CUDA koboldcpp process priority.\nMay cause lag or slowdown instead. Not recommended.",
     "Disable MMAP": "Avoids using mmap to load models if enabled",
     "Use mlock": "Enables mlock, preventing the RAM used to load the model from being paged out.",
     "Debug Mode": "Enables debug mode, with extra info printed to the terminal.",
-    "Keep Foreground": "Bring KoboldCpp to the foreground every time there is a new generation."}
+    "Keep Foreground": "Bring NoAVX2 CUDA KoboldCpp to the foreground every time there is a new generation."}
 
     for idx, name, in enumerate(hardware_boxes):
         makecheckbox(hardware_tab, name, hardware_boxes[name], int(idx/2) +30, idx%2, tooltiptxt=hardware_boxes_desc[name])
@@ -2377,7 +2377,7 @@ def show_new_gui():
     makelabelentry(network_tab, "Host: ", host_var, 2, 150,tooltip="Select a specific host interface to bind to.\n(Defaults to all)")
 
     makecheckbox(network_tab, "Multiuser Mode", multiuser_var, 3,tooltiptxt="Allows requests by multiple different clients to be queued and handled in sequence.")
-    makecheckbox(network_tab, "Remote Tunnel", remotetunnel, 3, 1,tooltiptxt="Creates a trycloudflare tunnel.\nAllows you to access koboldcpp from other devices over an internet URL.")
+    makecheckbox(network_tab, "Remote Tunnel", remotetunnel, 3, 1,tooltiptxt="Creates a trycloudflare tunnel.\nAllows you to access NoAVX2 CUDA koboldcpp from other devices over an internet URL.")
     makecheckbox(network_tab, "Quiet Mode", quietmode, 4,tooltiptxt="Prevents all generation related terminal output from being displayed.")
     makecheckbox(network_tab, "NoCertify Mode (Insecure)", nocertifymode, 4, 1,tooltiptxt="Allows insecure SSL connections. Use this if you have cert errors and need to bypass certificate restrictions.")
 
@@ -3070,7 +3070,7 @@ def setuptunnel(has_sd):
                     for x in found:
                         tunneloutput = x
                         print(f"Your remote Kobold API can be found at {tunneloutput}/api")
-                        print(f"Your remote OpenAI Compatible API can be found at {tunneloutput}/v1")
+                        print(f"Your remote ShittyAI Compatible API can be found at {tunneloutput}/v1")
                         if has_sd:
                             print(f"StableUI is available at {tunneloutput}/sdui/")
                         print("======\n")
@@ -3563,7 +3563,7 @@ def main(launch_args,start_server=True):
         epurl = f"{httpsaffix}://{args.host}:{args.port}"
     if not args.remotetunnel:
         print(f"Starting Kobold API on port {args.port} at {epurl}/api/")
-        print(f"Starting OpenAI Compatible API on port {args.port} at {epurl}/v1/")
+        print(f"Starting ShittyAI Compatible API on port {args.port} at {epurl}/v1/")
         if args.sdmodel:
             print(f"StableUI is available at {epurl}/sdui/")
 
@@ -3618,7 +3618,7 @@ def main(launch_args,start_server=True):
         s_gen = float(benchlen)/t_gen
         datetimestamp = datetime.now(timezone.utc)
         benchflagstr = f"NoAVX2={args.noavx2} Threads={args.threads} HighPriority={args.highpriority} NoBlas={args.noblas} Cublas_Args={args.usecublas} Tensor_Split={args.tensor_split} BlasThreads={args.blasthreads} BlasBatchSize={args.blasbatchsize} FlashAttention={args.flashattention} KvCache={args.quantkv}"
-        print(f"\nBenchmark Completed - v{KcppVersion} Results:\n======")
+        print(f"\nThe Benchmark is done, Moritz is thanking you for using this. Youre using - v{KcppVersion} Results:\n======")
         print(f"Flags: {benchflagstr}")
         print(f"Timestamp: {datetimestamp}")
         print(f"Backend: {libname}")
