@@ -731,7 +731,7 @@ maxhordectx = 2048
 maxhordelen = 256
 modelbusy = threading.Lock()
 requestsinqueue = 0
-defaultport = 5001
+defaultport = 2009
 KcppVersion = "1.69"
 showdebug = True
 showsamplerwarning = True
@@ -962,7 +962,7 @@ class ServerRequestHandler(http.server.SimpleHTTPRequestHandler):
             last_non_horde_req_time = time.time()
 
         if (args.debugmode != -1 and not is_quiet) or args.debugmode >= 1:
-            utfprint("\nOutput: " + recvtxt)
+            utfprint("\nThanks for using Kcpp NoAVX2, Output: " + recvtxt)
 
         if api_format==1:
             res = {"data": {"seqs":[recvtxt]}}
@@ -3339,7 +3339,7 @@ def main(launch_args,start_server=True):
         maxhordectx = int(args.hordemaxctx)
 
     if args.debugmode != 1:
-        showdebug = False
+        showdebug = True
 
     if args.highpriority:
         print("Setting process to Higher Priority - Use Caution")
@@ -3653,11 +3653,11 @@ def main(launch_args,start_server=True):
             setuptunnel(True if args.sdmodel else False)
         else:
             # Flush stdout for previous win32 issue so the client can see output.
-            print(f"======\nPlease connect to custom endpoint at {epurl}", flush=True)
+            print(f"======\nConnect to {epurl} to use Koboldcpp NoAVX2 :)", flush=True)
         asyncio.run(RunServerMultiThreaded(args.host, args.port))
     else:
         # Flush stdout for previous win32 issue so the client can see output.
-        print(f"Server was not started, main function complete. Idling.", flush=True)
+        print(f"Server was not started, main function complete. Idling. Thank you for using Moritz's NoAVX2 Build.", flush=True)
 
 def run_in_queue(launch_args, input_queue, output_queue):
     main(launch_args, start_server=False)
@@ -3732,7 +3732,7 @@ if __name__ == '__main__':
     advparser.add_argument("--noshift", help="If set, do not attempt to Trim and Shift the GGUF context.", action='store_true')
     advparser.add_argument("--nommap", help="If set, do not use mmap to load newer models", action='store_true')
     advparser.add_argument("--usemlock", help="For Apple Systems. Force system to keep model in RAM rather than swapping or compressing", action='store_true')
-    advparser.add_argument("--noavx2", help="Do not use AVX2 instructions, a slower compatibility mode for older devices.", action='store_true')
+    advparser.add_argument("--noavx2", help="Do not use AVX2 instructions, already implemented in this version, so not needed. -Moritz", action='store_true')
     advparser.add_argument("--debugmode", help="Shows additional debug info in the terminal.", nargs='?', const=1, type=int, default=0)
     advparser.add_argument("--skiplauncher", help="Doesn't display or use the GUI launcher.", action='store_true')
     advparser.add_argument("--onready", help="An optional shell command to execute after the model has been loaded.", metavar=('[shell command]'), type=str, default="",nargs=1)
