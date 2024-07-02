@@ -1,4 +1,4 @@
-name: Koboldcpp Windows Full Binaries
+name: NoAvx2 Build
 
 on: workflow_dispatch
 env:
