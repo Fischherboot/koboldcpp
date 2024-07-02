@@ -3618,7 +3618,7 @@ def main(launch_args,start_server=True):
         s_gen = float(benchlen)/t_gen
         datetimestamp = datetime.now(timezone.utc)
         benchflagstr = f"NoAVX2={args.noavx2} Threads={args.threads} HighPriority={args.highpriority} NoBlas={args.noblas} Cublas_Args={args.usecublas} Tensor_Split={args.tensor_split} BlasThreads={args.blasthreads} BlasBatchSize={args.blasbatchsize} FlashAttention={args.flashattention} KvCache={args.quantkv}"
-        print(f"\nThe Benchmark is done, Moritz is thanking you for using this. Youre using - v{KcppVersion} Results:\n======")
+        print(f"\nThe Benchmark is done, Thanks for using Moritz's NoAVX2 Build. Youre using - v{KcppVersion} Results:\n======")
         print(f"Flags: {benchflagstr}")
         print(f"Timestamp: {datetimestamp}")
         print(f"Backend: {libname}")
