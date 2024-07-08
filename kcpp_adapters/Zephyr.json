@@ -1,0 +1,8 @@
+{
+"system_start":"<|system|>",
+"system_end":"<|endoftext|>",
+"user_start":"<|user|>",
+"user_end":"<|endoftext|>",
+"assistant_start":"<|assistant|>",
+"assistant_end":"<|endoftext|>>"
+}
