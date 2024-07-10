@@ -9136,7 +9136,7 @@ Current version: 148
                 st = "<end_of_turn>\\n<start_of_turn>user\\n";
                 et = "<end_of_turn>\\n<start_of_turn>assistant\\n";
                 break;
-			case "11": // Zephyr
+			case "12": // Zephyr
                 st = "<|endoftext|><|user|>\\n";
                 et = "<|assistant|>";
                 break;				
